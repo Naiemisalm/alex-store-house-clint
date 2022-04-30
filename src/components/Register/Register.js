@@ -1,36 +1,39 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-
-
-
-const Login = () => {
+const Register = () => {
     const navigate = useNavigate;
 
-    const navigateRegister = event => {
-        navigate('/register');
+    const navigateLogin = event => {
+        navigate('/login');
     }
     return (
         <div className='container w-50 mx-auto mt-5'>
-            <h2 className='text-center text-primary'>Please Login!!!</h2>
+            <h2 className='text-center text-primary'>Please Register!!!</h2>
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Enter your name</Form.Label>
+                    <Form.Control type="text" placeholder="Enter your name" />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email"  required/>
+                    <Form.Control type="email" placeholder="Enter email" required />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" />
                 </Form.Group>
+
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Check me out" />
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
-                <p>Alex store house <Link to="/register" className='text-danger pe-auto text-decoration-none' onClick={navigateRegister}>Please Register</Link> </p>
+                <p>Alex store house have an alredey account <Link to="/login" className='text-danger pe-auto text-decoration-none' onClick={navigateLogin}>Please Login</Link> </p>
 
             </Form>
             <div>
@@ -49,4 +52,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;
