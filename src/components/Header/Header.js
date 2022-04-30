@@ -1,15 +1,26 @@
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
+import { signOut } from 'firebase/auth';
+
 
 const Header = () => {
-    return (
-        <Navbar collapseOnSelect expand="lg" sticky='top' bg="black"  variant="dark">
-        <Container>
+
+  const [user] = useAuthState(auth);
+
+  const handleLogOut = () => {
+    signOut(auth);
+  }
+
+  return (
+    <Navbar collapseOnSelect expand="lg" sticky='top' bg="black" variant="dark">
+      <Container>
         <Navbar.Brand as={Link} to="/">
-            Alex Store House
-            {/* <img src={logo} height={40} width={40} alt="" /> */}
-            </Navbar.Brand>
+          Alex Store House
+
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
@@ -18,26 +29,21 @@ const Header = () => {
             <Nav.Link as={Link} to='/about'>About</Nav.Link>
           </Nav>
           <Nav>
-          <Nav.Link className='text-white fa-bold font-weight-bold' as={Link} to="/login">
-              Login
-            </Nav.Link>
-          </Nav>
-          {/* <Nav>
             {
-      
+
               user ?
-              <button className='btn btn-dark text-white' onClick={handleLogOut}>Log Out</button>
-      
-              :
-              <Nav.Link className='text-dark fa-bold font-weight-bold' as={Link} to="/login">
-              Login
-            </Nav.Link>
+                <button className='btn btn-primary text-white' onClick={handleLogOut}>Log Out</button>
+
+                :
+                <Nav.Link className='text-white fa-bold font-weight-bold' as={Link} to="/login">
+                  Login
+                </Nav.Link>
             }
-          </Nav> */}
+          </Nav>
         </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    );
+      </Container>
+    </Navbar>
+  );
 };
 
 export default Header;

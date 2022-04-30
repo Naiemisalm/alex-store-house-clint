@@ -1,49 +1,91 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useNavigate, Link } from 'react-router-dom';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useNavigate, useLocation } from 'react-router-dom';
+import auth from '../../firebase.init';
+import GoogleLogin from '../GoogleLogin/GoogleLogin';
+
 
 
 
 
 const Login = () => {
-    const navigate = useNavigate;
+    const emailRef = useRef('');
 
-    const navigateRegister = event => {
-        navigate('/register');
+    const navigate = useNavigate()
+    const location = useLocation()
+
+
+    let from = location.state?.from?.pathname || "/";
+
+
+    const [
+        signInWithEmailAndPassword,
+        user,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+
+    let errorElement;
+
+    if (error) {
+        errorElement = <p className='text-danger'>Error: {error?.message} </p>
     }
+
+
+    const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
+
+    const hadleToLogin = event => {
+        event.preventDefault();
+        let email = event.target.email.value
+        const password = event.target.password.value
+        console.log(email, password)
+        signInWithEmailAndPassword(email, password)
+
+        if (user) {
+            navigate('/home');
+        }
+
+    }
+
+    const navigateRegister = () => {
+        navigate('/register')
+    }
+    const resetPassword = async () => {
+        const email = emailRef.current.value;
+        if (email) {
+            await sendPasswordResetEmail(email);
+        }
+    }
+
     return (
-        <div className='container w-50 mx-auto mt-5'>
-            <h2 className='text-center text-primary'>Please Login!!!</h2>
-            <Form>
+        <div>
+            <h3 className='text-primary text-center '>Please Login</h3>
+            <Form onSubmit={hadleToLogin} className='container w-50 mx-auto'>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email"  required/>
+                    <Form.Control ref={emailRef} type="email" name='email' placeholder="Enter email" required />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
+                    <Form.Control type="password" name='password' placeholder="Password" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Check me out" />
                 </Form.Group>
                 <Button variant="primary" type="submit">
-                    Submit
+                    Login
                 </Button>
-                <p>Alex store house <Link to="/register" className='text-danger pe-auto text-decoration-none' onClick={navigateRegister}>Please Register</Link> </p>
-
             </Form>
+            <p>{errorElement}</p>
             <div>
-                <div className='d-flex align-items-center'>
-                    <div style={{ height: '1px' }} className='bg-primary w-50'></div>
-                    <p className='mt-2 px-2'>or</p>
-                    <div style={{ height: '1px' }} className='bg-primary w-50'></div>
-                </div>
-                <div>
-                    <button className='btn btn-info w-50 d-block mx-auto my-2'>
-                    <span className='px-2'>Google Sign In</span>
-                    </button>
-                </div>
+                <p className='text-center'> Don't have an account <span className='text-danger' style={{ cursor: 'pointer' }} onClick={navigateRegister}> Please Register</span></p>
+                <p className='text-center'>Forget Password? <button className='btn btn-link text-primary pe-auto text-decoration-none' onClick={resetPassword}>Update Password</button> </p>
+
+            </div>
+
+            <div>
+                <GoogleLogin></GoogleLogin>
             </div>
         </div>
     );
