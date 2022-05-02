@@ -6,9 +6,9 @@ import GoogleLogin from './components/GoogleLogin/GoogleLogin';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
+import ManageProduct from './components/ManageProduct/ManageProduct';
 import Register from './components/Register/Register';
 import RequireAuth from './components/RequireAuth/RequireAuth';
-import SelectItam from './components/SelectItam/SelectItam';
 import ServiceDetels from './components/ServiceDetels/ServiceDetels';
 import ServicesItam from './components/ServicesItam/ServicesItam';
 import UploadProduct from './components/UploadProduct/UploadProduct';
@@ -27,17 +27,17 @@ function App() {
         <Route path='register'element={<Register></Register>}></Route>
         <Route path='googlelogin' element={<GoogleLogin></GoogleLogin>}></Route>
         <Route path='cheackout' element={<Cheackout></Cheackout>}></Route>
+
         <Route path='service/:serviceId' element={
-        
         <RequireAuth>
           <ServiceDetels></ServiceDetels>
         </RequireAuth>
-
         }></Route>
-        <Route path='/selectitam' element={
-          <RequireAuth>
-            <SelectItam></SelectItam>
-          </RequireAuth>
+
+        <Route path='manageproduct' element={
+        <RequireAuth>
+          <ManageProduct></ManageProduct>
+        </RequireAuth>
         }></Route>
 
         <Route path='/uploadproduct' element={
