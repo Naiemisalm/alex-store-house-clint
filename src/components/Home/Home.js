@@ -1,10 +1,11 @@
 import React from 'react';
+import ServicesItam from '../ServicesItam/ServicesItam';
 
 const Home = () => {
     return (
-        <div>
-            <h1>Home</h1>
-        </div>
+        <>
+            <ServicesItam></ServicesItam>
+        </>
     );
 };
 

@@ -15,7 +15,6 @@ const Register = () => {
     const [
         createUserWithEmailAndPassword,
         user,
-        
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 

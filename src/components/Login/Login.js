@@ -80,7 +80,7 @@ const Login = () => {
             <p>{errorElement}</p>
             <div>
                 <p className='text-center'> Don't have an account <span className='text-danger' style={{ cursor: 'pointer' }} onClick={navigateRegister}> Please Register</span></p>
-                <p className='text-center'>Forget Password? <button className='btn btn-link text-primary pe-auto text-decoration-none' onClick={resetPassword}>Update Password</button> </p>
+                <p className='text-center'>Forget Password? <button className='btn btn-link text-danger pe-auto text-decoration-none' onClick={resetPassword}>Reast Password</button> </p>
 
             </div>
 
