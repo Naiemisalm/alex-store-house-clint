@@ -2,16 +2,17 @@ import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import GoogleLogin from '../GoogleLogin/GoogleLogin';
-
-
+import useToken from './../../hooks/useToken';
+const axios = require('axios').default;
 
 
 
 const Login = () => {
-    const emailRef = useRef('');
 
+    const emailRef = useRef('');
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -25,21 +26,29 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
+    const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
+    const [token] = useToken(user);
+
     let errorElement;
 
     if (error) {
         errorElement = <p className='text-danger'>Error: {error?.message} </p>
     }
 
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
-    const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
 
-    const hadleToLogin = event => {
+
+    const hadleToLogin = async event => {
         event.preventDefault();
         let email = event.target.email.value
         const password = event.target.password.value
         console.log(email, password)
-        signInWithEmailAndPassword(email, password)
+        await signInWithEmailAndPassword(email, password);
+
+
 
         if (user) {
             navigate('/home');
@@ -54,6 +63,10 @@ const Login = () => {
         const email = emailRef.current.value;
         if (email) {
             await sendPasswordResetEmail(email);
+            toast('sent email');
+        }
+        else{
+            toast('enter a valid email')
         }
     }
 

@@ -25,17 +25,17 @@ const UploadProduct = () => {
     return (
         
         <div>
-            <h2 className='text-center'>Upload porduct</h2>
+            <h2 className='text-center mt-5'>Upload porduct</h2>
             
             <div className='w-50 mx-auto mt-5'>
 
                 <form className=' d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
-                    <input className='mb-3' placeholder='Name' {...register("name", { required: true, maxLength: 20 })} />
+                    <input className=' mb-3' placeholder='Name' {...register("name", { required: true, maxLength: 20 })} />
                     <textarea className='mb-3' placeholder='Discription' {...register("discription", )} />
                     <input className='mb-3' placeholder='Photo Url' type ="text" {...register("img")} />
                     <input className='mb-3' placeholder='Price' type="number" {...register("price")} />
                     <input className='mb-3' placeholder='Quantity' type="number" {...register("quantity")} />
-                    <input  type="submit" value="Upload Product" />
+                    <input className='w-25 mx-auto' type="submit" value="Upload Product" />
                 </form>
             </div>
         </div>

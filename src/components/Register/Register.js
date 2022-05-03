@@ -4,13 +4,11 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-fireb
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import GoogleLogin from '../GoogleLogin/GoogleLogin';
+import useToken from './../../hooks/useToken';
 
 const Register = () => {
     const navigate = useNavigate();
-
-    const navigateRegister = () => {
-        navigate('/login')
-    }
+    const [token] = useToken();
 
     const [
         createUserWithEmailAndPassword,
@@ -18,9 +16,16 @@ const Register = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
+    const navigateRegister = () => {
+        navigate('/login')
+    }
+
     let errorElement;
     if (error) {
         errorElement = <p className='text-danger'>Error: {error?.message}  </p>
+    }
+    if (token) {
+        navigate('/home');
     }
 
     const [updateProfile, updating] = useUpdateProfile(auth);
