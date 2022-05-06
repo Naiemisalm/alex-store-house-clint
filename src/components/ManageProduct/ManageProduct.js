@@ -1,8 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import useProduct from './../../hooks/useProduct';
 
 const ManageProduct = () => {
     const [products , setPoducts] = useProduct();
+
+    const navigate = useNavigate()
+    const handleEetItam = ()=>{
+        navigate('/uploadproduct')
+    }
 
     const handleToDelete =(id)=>{
         const proceed = window.confirm('Are you sure delete your product');
@@ -19,6 +25,7 @@ const ManageProduct = () => {
             })
 
         }
+       
     }
 
     return (
@@ -27,7 +34,8 @@ const ManageProduct = () => {
             <div className='container'>
                 {
                     products.map(product => <div key={product._id}>
-                        <h3>{product.name} <button className='ml-5' onClick={ () =>{handleToDelete(product._id)}}>Delete</button></h3>
+                        <p>{product.name}  <button onClick={handleEetItam}> set itam</button> <button className='ml-5' onClick={ () =>{handleToDelete(product._id)}}>Delete</button></p>
+                      
                     </div>)
                 }
             </div>

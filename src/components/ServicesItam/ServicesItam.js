@@ -15,10 +15,11 @@ const ServicesItam = () => {
             <h3 className='text-center mt-3'>This is avalable product</h3>
             <div className="row">
                 {
-                    services.map(service => <Service
+                    services.map(service =>  <Service
                         key={service._id}
                         service={service}
                     ></Service>)
+                    
                 }
             </div>
 
