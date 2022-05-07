@@ -12,8 +12,8 @@ const ServicesItam = () => {
     }, [])
     return (
         <div className='container'>
-            <h3 className='text-center mt-3'>This is avalable product</h3>
-            <div className="row">
+            <h3 className='text-center mt-5 mb-5'>This is avalable product</h3>
+            <div className=" container row">
                 {
                     services.map(service =>  <Service
                         key={service._id}

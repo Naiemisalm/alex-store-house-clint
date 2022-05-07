@@ -23,6 +23,8 @@ const ServiceDetels = () => {
            <h2 className='fs-2 fw-bold'>{product.name}</h2>
             <p className='fs-4'>{product.discription}</p>
             <p className='fs-3'>Price:${product.price}</p>
+            <p className='fs-3'>suplayer Name: {product.suplayer}</p>
+
             <p className='fs-3'>Quantity:{product.quantity}</p>
             <button  className='btn btn-primary'>Delivered</button>
            </div>
