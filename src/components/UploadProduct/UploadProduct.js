@@ -35,6 +35,7 @@ const UploadProduct = () => {
                     <input className='mb-3' placeholder='Photo Url' type ="text" {...register("img")} />
                     <input className='mb-3' placeholder='Price' type="number" {...register("price")} />
                     <input className='mb-3' placeholder='Quantity' type="number" {...register("quantity")} />
+                    <input className='mb-3' placeholder='Suplayer' type="text" {...register("suplayer")} />
                     <input className='w-25 mx-auto' type="submit" value="Upload Product" />
                 </form>
             </div>

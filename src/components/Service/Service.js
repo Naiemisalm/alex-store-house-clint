@@ -18,7 +18,7 @@ const Service = ({ service }) => {
                     <div className="card-body">
                         <h5 className="card-title">Name: {name}</h5>
                         <p>Price:${price}</p>
-                        < p className="card-text">{discription.slice(0, 40) + " read more..."}</p>
+                        {/* < p className="card-text">{discription}</p> */}
                         <p> Quantity: {quantity}</p>
                         <p>Suplayer: {suplayer}</p>
                         <p>stock:{stock}</p>
