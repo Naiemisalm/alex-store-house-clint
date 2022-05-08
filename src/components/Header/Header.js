@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <Navbar collapseOnSelect expand="lg" sticky='top' bg="black" variant="dark">
       <Container>
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link} to="home">
           Alex Store House
 
         </Navbar.Brand>
