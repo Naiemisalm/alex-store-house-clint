@@ -9,6 +9,7 @@ import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import ManageProduct from './components/ManageProduct/ManageProduct';
+import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import Register from './components/Register/Register';
 import RequireAuth from './components/RequireAuth/RequireAuth';
 import ServiceDetels from './components/ServiceDetels/ServiceDetels';
@@ -49,7 +50,7 @@ function App() {
             <UploadProduct></UploadProduct>
           </RequireAuth>
         }></Route>
-        
+        <Route path='/*' element={<NotFoundPage></NotFoundPage>}></Route>
       </Routes>
       <Footer></Footer>
     </div>

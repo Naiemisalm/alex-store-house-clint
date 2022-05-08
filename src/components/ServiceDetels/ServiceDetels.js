@@ -8,14 +8,14 @@ const ServiceDetels = () => {
     const [product, setProduct] = useState({});
 
     useEffect(() => {
-        const url = `http://localhost:5000/product/${serviceId}`
+        const url = `https://serene-harbor-08574.herokuapp.com/product/${serviceId}`
         fetch(url)
             .then(res => res.json())
             .then(data => setProduct(data));
     }, [serviceId]);
 
     const handleDeliverd = e => {
-        const url = (`http://localhost:5000/service/${serviceId}`)
+        const url = (`https://serene-harbor-08574.herokuapp.com/service/${serviceId}`)
         fetch(url, {
             method: "PUT",
             headers: {

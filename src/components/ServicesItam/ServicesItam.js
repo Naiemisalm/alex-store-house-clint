@@ -4,9 +4,10 @@ import './ServicesItam.css'
 
 const ServicesItam = () => {
     const [services, setServices] = useState([]);
+    console.log(services)
 
     useEffect(() => {
-        fetch('http://localhost:5000/product')
+        fetch('https://serene-harbor-08574.herokuapp.com/product')
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])

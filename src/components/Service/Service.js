@@ -12,13 +12,13 @@ const Service = ({ service }) => {
 
     return (
         <div className='containet'>
-            <div className=' title g-5 col-sm-12 col-md-6 col-lg-4'>
+            <div className=' title g-5 col-sm-12 col-md-6 col-lg-'>
                 <div id='experts' className="card " style={{ width: "18rem" }}>
                     <img src={img} class="card-img-top" alt="..." />
                     <div className="card-body">
                         <h5 className="card-title">Name: {name}</h5>
                         <p>Price:${price}</p>
-                        {/* < p className="card-text">{discription}</p> */}
+                        < p className="card-text">{discription}</p>
                         <p> Quantity: {quantity}</p>
                         <p>Suplayer: {suplayer}</p>
                         <p>stock:{stock}</p>
@@ -38,7 +38,7 @@ export default Service;
 //       const makeQuantity = {newQuantity}
 //       console.log(quantity);
 
-//       const url =(`http://localhost:5000/product/${_id}`)
+//       const url =(`https://serene-harbor-08574.herokuapp.com/product/${_id}`)
 //         fetch(url, {
 //             method:"PUT",
 //             headers:{
