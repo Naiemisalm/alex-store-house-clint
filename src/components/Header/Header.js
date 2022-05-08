@@ -24,6 +24,7 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
+            <Nav.Link as={Link} to='/home'>Home</Nav.Link>
             <Nav.Link as={Link} to='/servicesitam'>Services Itam</Nav.Link>
             <Nav.Link as={Link} to='/uploadproduct'>Upload Product</Nav.Link>
             
@@ -36,10 +37,9 @@ const Header = () => {
           </Nav>
           <Nav>
             {
-
+               
               user ?
                 <button className='btn btn-primary text-white' onClick={handleLogOut}>Log Out</button>
-
                 :
                 <Nav.Link className='text-white fa-bold font-weight-bold' as={Link} to="/login">
                   Login
