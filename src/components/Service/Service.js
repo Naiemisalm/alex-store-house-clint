@@ -11,7 +11,7 @@ const Service = ({ service }) => {
     }
 
     return (
-  
+
         <div className='containet '>
             <div className='design mb-3'>
                 <div id='experts' className="card " style={{ width: "18rem" }}>
